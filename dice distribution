@@ -1,0 +1,22 @@
+from matplotlib import pyplot as plt
+import matplotlib.ticker as ticker
+import random
+import os
+
+os.system('clear')
+dice_count = int(input("Enter number of dices: "))
+dice_face = int(input("Enter number of faces on the dice: "))
+lst = []
+
+for a in range(0,100000):
+    total_value = 0
+    for b in range(0,dice_count):
+        dice_value = int(random.randrange(1,dice_face + 1))
+        total_value = total_value + dice_value
+    lst.append(total_value)
+
+buckets_count = dice_count * (dice_face - 1) + 1
+fig, ax = plt.subplots(1,1)
+plt.hist(lst, bins=buckets_count)
+ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
+plt.show()
